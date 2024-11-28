@@ -25,7 +25,56 @@
 - Explicar as partes mais importantes desses codigos 
 
 ### Codigo de LEDs
+#### Bibliotecas:
+```c++
+#include <Adafruit_NeoPixel.h>
 
+#define PIN 7
+#define NUMPIXELS 128 
+#define BRIGHTNESS 28
+
+Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+```
+- Voce precisa ira utilizar o Adafruit DMA Neopixel que tem no library manager do arduino. 
+##### Instalação de bibliotecas
+1. siga as instruções que estão na area de "Bibliotecas necessárias".
+
+##### Olhos:
+```c++
+void displayPattern(int pattern[8][8]) {
+  for (int y = 0; y < 8; y++) {
+    for (int x = 0; x < 8; x++) {
+      int pixelIndex1 = y * 8 + x;
+      int pixelIndex2 = 64 + y * 8 + x;
+      if (pattern[y][x] == 2) {
+        pixels.setPixelColor(pixelIndex1, pixels.Color(210,105,30)); 
+        pixels.setPixelColor(pixelIndex2, pixels.Color(210,105,30)); 
+      } else if (pattern[y][x] == 1) {
+        pixels.setPixelColor(pixelIndex1, pixels.Color(255, 255, 255)); 
+        pixels.setPixelColor(pixelIndex2, pixels.Color(255, 255, 255));
+      } else {
+        pixels.setPixelColor(pixelIndex1, pixels.Color(0, 0, 0)); 
+        pixels.setPixelColor(pixelIndex2, pixels.Color(0, 0, 0)); 
+      }
+    }
+  }
+  pixels.show();
+}
+```
+- Aqui é configurado a cor do olho, é configurado pelo padrão de RGB, RED, GREEN e BLUE, como voce pode o 2 esta mais puxado para o vermelho
+```c++
+  int eyeOpen[8][8] = {
+    {0, 0, 1, 1, 1, 1, 0, 0},
+    {0, 1, 1, 1, 1, 1, 1, 0},
+    {1, 1, 1, 0, 0, 1, 1, 1},
+    {1, 1, 0, 2, 2, 0, 1, 1},
+    {1, 1, 0, 2, 2, 0, 1, 1},
+    {1, 1, 1, 0, 0, 1, 1, 1},
+    {0, 1, 1, 1, 1, 1, 1, 0},
+    {0, 0, 1, 1, 1, 1, 0, 0}
+  };
+```
+- Aqui é bem intuitivo, os numeros 1 formam um iris enquanto o 2 a pupila do olho
 
 ### Posições dos pinos
 
@@ -37,7 +86,7 @@
 #include <PN532_SWHSU.h>
 #include <PN532.h>
 ```
-- Voce precisa importar as bibliotecas PN532, NDEF e a PN532_SWHSU que se encontra no [Github](https://github.com/elechouse/PN532)
+- Voce precisa importar as bibliotecas PN532, NDEF e a PN532_SWHSU que se encontra no [Github](https://github.com/elechouse/PN532), elas não existem no library manager do arduino IDE.
 ##### Instalação de bibliotecas
 1. Estraia os arquivos do PN532-PN532_HSU
 1. Compacte as bibliotecas PN532, NDEF e PN532_SWHSU no formato zip
