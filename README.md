@@ -35,14 +35,6 @@
 #include <SoftwareSerial.h>
 #include <PN532_SWHSU.h>
 #include <PN532.h>
-
-SoftwareSerial SWSerial( 2, 3 ); 
-PN532_SWHSU pn532swhsu( SWSerial );
-PN532 nfc( pn532swhsu );
-int cont = 0;
-
-String tagId = "None", dispTag = "None";
-byte nuidPICC[4];
 ```
 - Voce precisa importar as bibliotecas PN532, NDEF e a PN532_SWHSU que se encontra no [Github](https://github.com/elechouse/PN532)
 #### Instalação de bibliotecas
