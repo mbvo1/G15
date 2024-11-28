@@ -17,11 +17,11 @@
 ---
 
 ### Codigo
-- explicar codigo LEDs
-- e a posicao dos pinos que sao conectados
-- explicar codigo NFC
-- explicar codigo audio python
-- explicar as partes mais importantes desses codigos 
+- Explicar codigo LEDs
+- E a posicao dos pinos que sao conectados
+- Explicar codigo NFC
+- Explicar codigo audio python
+- Explicar as partes mais importantes desses codigos 
 
 
 
