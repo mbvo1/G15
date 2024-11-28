@@ -44,12 +44,15 @@ int cont = 0;
 String tagId = "None", dispTag = "None";
 byte nuidPICC[4];
 ```
-- Voce precisa importar as bibliotecas PN532 e a PN532_SWHSU que se encontra no [Github](https://github.com/elechouse/PN532)
+- Voce precisa importar as bibliotecas PN532, NDEF e a PN532_SWHSU que se encontra no [Github](https://github.com/elechouse/PN532)
 #### Instalação de bibliotecas
-1. entre no arduino IDE
+1. Estraia os arquivos do PN532-PN532_HSU
+1. Compacte as bibliotecas PN532, NDEF e PN532_SWHSU no formato zip
+1. Entre no arduino IDE
 1. Va para sketch no canto superior esquerdo
-1. include library
-1. Add .Zip library
+1. Va para include library
+1. Escolha Add .Zip library
+1. Va para a pasta onde estão os arquivos e escolha eles
 
 ### Codigo de Audio em python
 
