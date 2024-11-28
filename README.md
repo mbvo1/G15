@@ -31,6 +31,7 @@
 
 
 ### Codigo NFC
+### ca
 ```c++
 #include <SoftwareSerial.h>
 #include <PN532_SWHSU.h>
@@ -45,6 +46,23 @@
 1. Va para include library
 1. Escolha Add .Zip library
 1. Va para a pasta onde estão os arquivos e escolha eles
+
+```c++
+void setup(void) {
+  Serial.begin(115200);
+  Serial.println("Hello Maker!");
+  
+  nfc.begin();
+
+  uint32_t versiondata = nfc.getFirmwareVersion();
+  if (! versiondata) {
+    Serial.print("Didn't Find PN53x Module");
+    while (1);
+  }
+}
+```
+- Certifiquece que a comunicação serial seja __115200__.
+- o "nfc.begin()" configura e o "nfc.getFirmwareVersion()" verifica se a versão esta correta.
 
 ### Codigo de Audio em python
 
