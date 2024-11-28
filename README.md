@@ -24,5 +24,14 @@
 - Explicar codigo audio python
 - Explicar as partes mais importantes desses codigos 
 
+### Codigo de LEDs
 
+
+### Posições dos pinos
+
+
+### Codigo NFC
+
+
+### Codigo de Audio em python
 
