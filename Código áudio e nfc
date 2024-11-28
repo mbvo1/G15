@@ -1,0 +1,40 @@
+import serial
+import pygame
+
+pygame.mixer.init()
+arduino = serial.Serial('COM6', 115200, timeout=1) 
+audio_files = ["audio1.mp3", "audio2.mp3", "audio3.mp3"]
+read_count = 0
+
+def play_audio():
+    global read_count
+    if read_count <= 3:
+        pygame.mixer.music.load(audio_files[read_count - 1])
+        pygame.mixer.music.play()
+        if read_count==3:
+            read_count=0
+def stop_audio():
+        pygame.mixer.music.stop()
+
+def process_card_read(line):
+    global read_count
+    if "PLAY_AUDIO" in line:
+        read_count += 1
+        if read_count <= 3:
+            print(f"Tocando áudio {read_count}")
+            play_audio()
+        elif read_count >= 4:
+            print("Parando o áudio após a 4ª leitura")
+            stop_audio()
+print("Aguardando cartões...")
+
+try:
+    while True:
+        if arduino.in_waiting > 0:
+            line = arduino.readline().decode('utf-8').strip()
+            print(f"Recebido do Arduino: {line}")
+            process_card_read(line)
+except KeyboardInterrupt:
+    print("Programa interrompido.")
+finally:
+    arduino.close()
