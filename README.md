@@ -4,13 +4,13 @@
 ## Utilização do código:
 ---
 ### Bibliotecas necessárias:
-####Python:**
+#### Python:
 - 
 -**Serial**
 
 -**Pygame**
 
-### Arduino:**
+#### Arduino:
 
 -**PN532**
 
