@@ -31,14 +31,14 @@
 
 
 ### Codigo NFC
-### ca
+#### Bibliotecas:
 ```c++
 #include <SoftwareSerial.h>
 #include <PN532_SWHSU.h>
 #include <PN532.h>
 ```
 - Voce precisa importar as bibliotecas PN532, NDEF e a PN532_SWHSU que se encontra no [Github](https://github.com/elechouse/PN532)
-#### Instalação de bibliotecas
+##### Instalação de bibliotecas
 1. Estraia os arquivos do PN532-PN532_HSU
 1. Compacte as bibliotecas PN532, NDEF e PN532_SWHSU no formato zip
 1. Entre no arduino IDE
@@ -46,7 +46,7 @@
 1. Va para include library
 1. Escolha Add .Zip library
 1. Va para a pasta onde estão os arquivos e escolha eles
-
+#### Serial e NFC:
 ```c++
 void setup(void) {
   Serial.begin(115200);
@@ -62,7 +62,17 @@ void setup(void) {
 }
 ```
 - Certifiquece que a comunicação serial seja __115200__.
-- o "nfc.begin()" configura e o "nfc.getFirmwareVersion()" verifica se a versão esta correta.
+- o "nfc.begin()" configura o nfc e o "nfc.getFirmwareVersion()" verifica se a versão esta correta.
+
+#### Temporizador:
+```c++
+void loop() {
+  readNFC();
+  delay(2000);
+}
+```
+- A cada 2 segundos o sera lido um NFC, se ouver um NFC perto.
+
 
 ### Codigo de Audio em python
 
