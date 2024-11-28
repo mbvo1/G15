@@ -1,6 +1,6 @@
 # La Ursa Walk
 
-La Ursa Walk é um projeto que promove caminhadas interativas pela área do Recife Antigo, incentivando a prática de atividade física enquanto proporciona uma experiência educativa sobre os pontos turísticos no bairro do Recife.
+### La Ursa Walk é um projeto que promove caminhadas interativas pela área do Recife Antigo, incentivando a prática de atividade física enquanto proporciona uma experiência educativa sobre os pontos turísticos no bairro do Recife.
 ---
 ## Utilização do código:
 ---
@@ -17,5 +17,11 @@ La Ursa Walk é um projeto que promove caminhadas interativas pela área do Reci
 ---
 
 ### Codigo
+- explicar codigo LEDs
+- e a posicao dos pinos que sao conectados
+- explicar codigo NFC
+- explicar codigo audio python
+- explicar as partes mais importantes desses codigos 
+
 
 
