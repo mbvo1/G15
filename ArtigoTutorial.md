@@ -1,6 +1,6 @@
-#ARTIGO TUTORIAL- como desenvolver o artefato 
+# ARTIGO TUTORIAL- como desenvolver o artefato 
 
-##Step-by-step:
+## Step-by-step:
 
 1- Com a cabeça da a **La Ursa** comprada, ou seja, o protótipo, você deve personalizá-la do jeito que preferir (desenhos, detalhes, pinturas)
 
