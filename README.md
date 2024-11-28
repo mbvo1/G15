@@ -16,6 +16,6 @@ La Ursa Walk é um projeto que promove caminhadas interativas pela área do Reci
 
 ---
 
-### Componentes
+### Codigo
 
--**
+
