@@ -1,40 +1,81 @@
-import serial
-import pygame
+#include <SoftwareSerial.h>
+#include <PN532_SWHSU.h>
+#include <PN532.h>
 
-pygame.mixer.init()
-arduino = serial.Serial('COM6', 115200, timeout=1) 
-audio_files = ["cadastroefetivado.mp3", "nalateraldoproximolugarencontrase.mp3", "ofortedobrumquetambemchamadodefortedesãojorge.mp3"]
-read_count = 0
+SoftwareSerial SWSerial( 2, 3 ); 
+PN532_SWHSU pn532swhsu( SWSerial );
+PN532 nfc( pn532swhsu );
+int cont = 0;
 
-def play_audio():
-    global read_count
-    if read_count <= 3:
-        pygame.mixer.music.load(audio_files[read_count - 1])
-        pygame.mixer.music.play()
-def stop_audio():
-        pygame.mixer.music.stop()
+String tagId = "None", dispTag = "None";
+byte nuidPICC[4];
 
-def process_card_read(line):
-    global read_count
-    if "PLAY_AUDIO" in line:
-        read_count += 1
-        if read_count <= 3:
-            print(f"Tocando áudio {read_count}")
-            play_audio()
-            if read_count==3:
-                read_count=0
-        elif read_count >= 4:
-            print("Parando o áudio após a 4ª leitura")
-            stop_audio()
-print("Aguardando cartões...")
+void setup(void) {
+  Serial.begin(115200);
+  Serial.println("Hello Maker!");
+  
+  nfc.begin();
 
-try:
-    while True:
-        if arduino.in_waiting > 0:
-            line = arduino.readline().decode('utf-8').strip()
-            print(f"Recebido do Arduino: {line}")
-            process_card_read(line)
-except KeyboardInterrupt:
-    print("Programa interrompido.")
-finally:
-    arduino.close()
+  uint32_t versiondata = nfc.getFirmwareVersion();
+  if (! versiondata) {
+    Serial.print("Didn't Find PN53x Module");
+    while (1);
+  }
+
+  Serial.print("Found chip PN5"); Serial.println((versiondata >> 24) & 0xFF, HEX);
+  Serial.print("Firmware ver. "); Serial.print((versiondata >> 16) & 0xFF, DEC);
+  Serial.print('.'); Serial.println((versiondata >> 8) & 0xFF, DEC);
+
+  nfc.SAMConfig();
+  Serial.println("Waiting for an ISO14443A Card ...");
+}
+
+void loop() {
+  readNFC();
+  delay(2000)
+}
+
+void readNFC() {
+  boolean success;
+  uint8_t uid[] = { 0, 0, 0, 0, 0, 0, 0 }; 
+  uint8_t uidLength;                       
+  success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, &uid[0], &uidLength);
+
+  if (success) {
+    Serial.print("UID Length: "); Serial.print(uidLength, DEC); Serial.println(" bytes");
+    Serial.print("UID Value: ");
+
+    for (uint8_t i = 0; i < uidLength; i++) {
+      nuidPICC[i] = uid[i];
+      Serial.print(" "); Serial.print(uid[i], DEC);
+    }
+    Serial.println();
+    tagId = tagToString(nuidPICC);
+    dispTag = tagId;
+    Serial.print(F("tagId is : "));
+    Serial.println(tagId);
+    Serial.println("");
+    cont++;
+
+    if (cont <= 3) {
+      Serial.println("PLAY_AUDIO");
+    } 
+
+    else if (cont > 3) {
+      Serial.println("STOP_AUDIO");
+      cont = 0;
+    }
+
+    delay(1000);
+  } else {
+  }
+}
+
+String tagToString(byte id[4]) {
+  String tagId = "";
+  for (byte i = 0; i < 4; i++) {
+    if (i < 3) tagId += String(id[i]) + ".";
+    else tagId += String(id[i]);
+  }
+  return tagId;
+}
