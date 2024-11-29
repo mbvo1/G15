@@ -65,7 +65,7 @@ void displayPattern(int pattern[8][8]) {
   pixels.show();
 }
 ```
-- Aqui é configurado a cor do olho, é configurado pelo padrão de RGB, RED, GREEN e BLUE, como voce pode o 2 esta mais puxado para o vermelho
+- Aqui é configurado a cor do olho, é configurado pelo padrão de RGB, RED, GREEN e BLUE, como voce pode ver o 2 esta mais puxado para o vermelho
 ```c++
   int eyeOpen[8][8] = {
     {0, 0, 1, 1, 1, 1, 0, 0},
