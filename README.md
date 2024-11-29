@@ -6,7 +6,7 @@
 - Uma vez iniciado, as leds se acendem e se movimentam, silumando olhos
 - Para cada passo, o usuário deve aproximar o seu cartão para prosseguir o programa, até ele ser encerrado
 - Durante seu funcionamento, uma caixa dentro do protótipo reproduz áudios já gravados
-- O funcionamento é bem prático e fácil, visto que o usuário só necessita aproximar o cartão no sensor para prosseguir
+- O funcionamento é bem prático e fácil, visto que o usuário só necessita aproximar um cartão no sensor para prosseguir
 
 ## Utilização do código:
 ---
@@ -24,9 +24,9 @@
 
 ---
 
-### Codigos:
+### Códigos:
 
-### Codigo de LEDs
+### Código de LEDs
 #### Bibliotecas:
 ```c++
 #include <Adafruit_NeoPixel.h>
