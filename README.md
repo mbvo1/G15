@@ -10,6 +10,8 @@
 
 ## Utilização do código:
 ---
+### Link para baixar a IDE Arduino
+[Clique aqui](https://www.arduino.cc/en/software)
 ### Bibliotecas necessárias:
 #### Python:
 - **Serial**
