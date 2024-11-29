@@ -1,5 +1,12 @@
 # La Ursa Walk
  La Ursa Walk é um projeto que promove caminhadas interativas pela área do Recife Antigo, incentivando a prática de atividade física enquanto proporciona uma experiência educativa sobre os pontos turísticos no bairro do Recife.
+ 
+## Como utilizá-la?
+- O usuário do programa deve aproximar um cartão no nariz do protótipo para dar início ao sistema
+- Uma vez iniciado, as leds se acendem e se movimentam, silumando olhos
+- Para cada passo, o usuário deve aproximar o seu cartão para prosseguir o programa, até ele ser encerrado
+- Durante seu funcionamento, uma caixa dentro do protótipo reproduz áudios já gravados
+- O funcionamento é bem prático e fácil, visto que o usuário só necessita aproximar o cartão no sensor para prosseguir
 
 ## Utilização do código:
 ---
@@ -30,9 +37,9 @@
 
 Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 ```
-- Voce precisa ira utilizar o Adafruit DMA Neopixel que tem no library manager do arduino. 
+- Você precisa ira utilizar o Adafruit DMA Neopixel que tem no library manager do arduino. 
 ##### Instalação de bibliotecas
-1. siga as instruções que estão na area de "Bibliotecas necessárias".
+1. Siga as instruções que estão na area de "Bibliotecas necessárias".
 
 ##### Olhos:
 ```c++
@@ -69,7 +76,7 @@ void displayPattern(int pattern[8][8]) {
     {0, 0, 1, 1, 1, 1, 0, 0}
   };
 ```
-- Aqui é bem intuitivo, os numeros 1 formam um iris enquanto o 2 a pupila do olho
+- Aqui é bem intuitivo, os numeros 1 formam um íris enquanto o 2 a pupila do olho
 
 ### Posições dos pinos
 
@@ -89,7 +96,7 @@ void displayPattern(int pattern[8][8]) {
 1. Va para sketch no canto superior esquerdo
 1. Va para include library
 1. Escolha Add .Zip library
-1. Va para a pasta onde estão os arquivos e escolha eles
+1. Vá para a pasta onde estão os arquivos e os escolha 
 #### Serial e NFC:
 ```c++
 void setup(void) {
@@ -106,7 +113,7 @@ void setup(void) {
 }
 ```
 - Certifiquece que a comunicação serial seja __115200__.
-- o "nfc.begin()" configura o nfc e o "nfc.getFirmwareVersion()" verifica se a versão esta correta.
+- o "nfc.begin()" configura o nfc e o "nfc.getFirmwareVersion()" verifica se a versão está correta.
 
 #### Temporizador:
 ```c++
@@ -115,7 +122,7 @@ void loop() {
   delay(2000);
 }
 ```
-- A cada 2 segundos o sera lido um NFC, se ouver um NFC perto.
+- A cada 2 segundos será lido um NFC, se ouver um NFC perto.
 
 
 ### Codigo de Audio em python
