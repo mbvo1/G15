@@ -26,7 +26,7 @@
 
 ---
 
-### Códigos:
+## Códigos:
 
 ### Código de LEDs
 #### Bibliotecas:
@@ -80,7 +80,6 @@ void displayPattern(int pattern[8][8]) {
 ```
 - Aqui é bem intuitivo, os numeros 1 formam um íris enquanto o 2 a pupila do olho
 
-### Posições dos pinos
 
 
 ### Codigo NFC
@@ -128,4 +127,60 @@ void loop() {
 
 
 ### Codigo de Audio em python
+#### Bibliotecas
+```python
+import serial
+import pygame
+```
+ - Caso as bibliotecas não estejam instaladas, é necessário abrir o terminal e digitar o seguinte comando:
+```
+pip install pyserial
+```
+e
+```
+pip install pygame
+```
+#### Funções
+```python
+def play_audio():
+    global read_count
+    if read_count <= 3:
+        pygame.mixer.music.load(audio_files[read_count - 1])
+        pygame.mixer.music.play()
 
+def stop_audio():
+    pygame.mixer.music.stop()
+
+def process_card_read(line):
+    global read_count
+    if "PLAY_AUDIO" in line:
+        read_count += 1
+        if read_count <= 3:
+            print(f"Tocando áudio {read_count}")
+            play_audio()
+            if read_count == 3:
+                read_count = 0
+        elif read_count >= 4:
+            print("Parando o áudio após a 4ª leitura")
+            stop_audio()
+```
+
+- "play_audio()": Carrega e toca um arquivo de áudio baseado no contador de leituras.
+
+- "stop_audio()": Para qualquer reprodução de áudio ativa.
+
+- "process_card_read(line)": Processa o comando enviado pelo Arduino, gerencia o contador e chama as funções de áudio.
+
+#### Loop Principal
+
+```python
+while True:
+        if arduino.in_waiting > 0:
+            line = arduino.readline().decode('utf-8').strip()
+            print(f"Recebido do Arduino: {line}")
+            process_card_read(line)
+```
+
+- Lê mensagens do Arduino.
+
+- Processa as mensagens usando a função process_card_read().
