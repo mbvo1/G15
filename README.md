@@ -3,7 +3,7 @@
  
 ## Como utilizá-la?
 - O usuário do programa deve aproximar um cartão no nariz do protótipo para dar início ao sistema
-- Uma vez iniciado, as leds se acendem e se movimentam, silumando olhos
+- Uma vez iniciado, as leds se acendem e se movimentam, simulando olhos
 - Para cada passo, o usuário deve aproximar o seu cartão para prosseguir o programa, até ele ser encerrado
 - Durante seu funcionamento, uma caixa dentro do protótipo reproduz áudios já gravados
 - O funcionamento é bem prático e fácil, visto que o usuário só necessita aproximar um cartão no sensor para prosseguir
@@ -26,10 +26,10 @@
 
 ---
 
-## Códigos:
+## Códigos
 
 ### Código de LEDs
-#### Bibliotecas:
+#### Bibliotecas
 ```c++
 #include <Adafruit_NeoPixel.h>
 
@@ -43,7 +43,8 @@ Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 ##### Instalação de bibliotecas
 1. Siga as instruções que estão na area de "Bibliotecas necessárias".
 
-##### Olhos:
+##### Olhos
+- Aqui é configurado a cor do olho pelo padrão de RGB (RED, GREEN e BLUE) como voce pode ver o 2 esta mais puxado para o vermelho
 ```c++
 void displayPattern(int pattern[8][8]) {
   for (int y = 0; y < 8; y++) {
@@ -65,7 +66,7 @@ void displayPattern(int pattern[8][8]) {
   pixels.show();
 }
 ```
-- Aqui é configurado a cor do olho, é configurado pelo padrão de RGB, RED, GREEN e BLUE, como voce pode ver o 2 esta mais puxado para o vermelho
+- Aqui é bem intuitivo, os numeros 1 formam um íris enquanto o 2 a pupila do olho
 ```c++
   int eyeOpen[8][8] = {
     {0, 0, 1, 1, 1, 1, 0, 0},
@@ -78,12 +79,12 @@ void displayPattern(int pattern[8][8]) {
     {0, 0, 1, 1, 1, 1, 0, 0}
   };
 ```
-- Aqui é bem intuitivo, os numeros 1 formam um íris enquanto o 2 a pupila do olho
+
 
 
 
 ### Codigo NFC
-#### Bibliotecas:
+#### Bibliotecas
 ```c++
 #include <SoftwareSerial.h>
 #include <PN532_SWHSU.h>
@@ -98,7 +99,7 @@ void displayPattern(int pattern[8][8]) {
 1. Va para include library
 1. Escolha Add .Zip library
 1. Vá para a pasta onde estão os arquivos e os escolha 
-#### Serial e NFC:
+#### Serial e NFC
 ```c++
 void setup(void) {
   Serial.begin(115200);
@@ -116,7 +117,7 @@ void setup(void) {
 - Certifiquece que a comunicação serial seja __115200__.
 - o "nfc.begin()" configura o nfc e o "nfc.getFirmwareVersion()" verifica se a versão está correta.
 
-#### Temporizador:
+#### Temporizador
 ```c++
 void loop() {
   readNFC();
@@ -136,7 +137,7 @@ import pygame
 ```
 pip install pyserial
 ```
-e
+e/ou
 ```
 pip install pygame
 ```
